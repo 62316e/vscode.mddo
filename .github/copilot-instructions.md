@@ -1,0 +1,4 @@
+- Build a focused TypeScript VS Code extension for Markdown todo decorations and status toggling.
+- Keep the implementation minimal, readable, and consistent with VS Code extension conventions.
+- Prefer VS Code Decoration API for visual styling and commands/keybindings for editing behavior.
+- Compile successfully before considering the setup complete.
