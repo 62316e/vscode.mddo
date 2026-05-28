@@ -1,15 +1,26 @@
 import * as assert from 'assert';
 
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
 import * as vscode from 'vscode';
-// import * as myExtension from '../../extension';
+import { getDecorationRangeEnd, parseTodoLine } from '../extension';
 
 suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+    vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
-	});
+    test('narrow decoration ends after the todo token', () => {
+        assert.strictEqual(getDecorationRangeEnd('    [ ] todo **text**', 4, 'narrow'), 7);
+    });
+
+    test('whole-line decoration ends after the line text', () => {
+        const lineText = '    [+] todo **text**';
+
+        assert.strictEqual(getDecorationRangeEnd(lineText, 4, 'wholeLine'), lineText.length);
+    });
+
+    test('parses bare todo lines', () => {
+        assert.deepStrictEqual(parseTodoLine('    [-] rejected'), { status: '-', startCharacter: 4 });
+    });
+
+    test('parses markdown task list todo lines', () => {
+        assert.deepStrictEqual(parseTodoLine('  - [+] completed'), { status: '+', startCharacter: 4 });
+    });
 });

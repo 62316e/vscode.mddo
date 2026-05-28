@@ -1,8 +1,18 @@
 {
-  "name": "markdown-todo-decorator",
-  "displayName": "Markdown Todo Decorator",
+  "name": "mddo",
+  "displayName": "mddo",
   "description": "Decorate Markdown todo statuses and cycle them with a keyboard shortcut.",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "license": "MIT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/62316e/vscode.mddo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/62316e/vscode.mddo/issues"
+  },
+  "homepage": "https://github.com/62316e/vscode.mddo#readme",
   "engines": {
     "vscode": "^1.119.0"
   },
@@ -12,17 +22,65 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
+  "publisher": "62316e",
+  "keywords": [
+    "markdown",
+    "todo",
+    "task-list",
+    "checkbox",
+    "decorations"
+  ],
+  "galleryBanner": {
+    "color": "1f2937",
+    "theme": "dark"
+  },
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "mddo",
+      "properties": {
+        "mddo.decorationScope": {
+          "type": "string",
+          "default": "narrow",
+          "enum": [
+            "narrow",
+            "wholeLine"
+          ],
+          "enumDescriptions": [
+            "Decorate only the [ ], [+], or [-] status token.",
+            "Decorate from the status token through the end of the line."
+          ],
+          "description": "Controls how much of a Markdown todo line is decorated."
+        },
+        "mddo.colors.todo": {
+          "type": "string",
+          "default": "#9ca3af",
+          "format": "color-hex",
+          "description": "Color used for [ ] todo markers."
+        },
+        "mddo.colors.completed": {
+          "type": "string",
+          "default": "#22c55e",
+          "format": "color-hex",
+          "description": "Color used for [+] completed markers."
+        },
+        "mddo.colors.rejected": {
+          "type": "string",
+          "default": "#f97316",
+          "format": "color-hex",
+          "description": "Color used for [-] rejected markers."
+        }
+      }
+    },
     "commands": [
       {
-        "command": "mdTodo.toggle",
+        "command": "mddo.toggle",
         "title": "Toggle Markdown Todo Status"
       }
     ],
     "keybindings": [
       {
-        "command": "mdTodo.toggle",
+        "command": "mddo.toggle",
         "key": "alt+d",
         "mac": "alt+d",
         "when": "editorTextFocus && editorLangId == markdown"
