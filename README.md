@@ -8,6 +8,8 @@ Decorates lightweight Markdown todo statuses and lets you cycle them from the ke
 - `[+]` completed markers are green.
 - `[-]` rejected markers are orange.
 - `Toggle Markdown Todo Status` cycles the current line through `[ ]`, `[+]`, and `[-]`.
+- `Insert/Update Todo Summary` writes a visible Markdown summary into the current file.
+- Headings show open todo counts in the editor, such as `## Auth service (1)`, without changing the Markdown file.
 
 ## Usage
 
@@ -24,6 +26,29 @@ Open a Markdown file and write todo lines at the start of a line, optionally aft
 
 Place the cursor on one of those lines and press `Alt+D`.
 
+Run `Insert/Update Todo Summary` to add or refresh a visible summary block in the current Markdown file:
+
+```markdown
+## Todo Summary
+
+- Open: 5
+- Done: 12
+- Rejected: 2
+- Total: 19
+```
+
+After the summary exists, it refreshes automatically when you toggle a todo with `Alt+D`.
+
+When a heading contains open todos, mddo also shows a virtual count at the end of the heading in VS Code. For example, a section like this:
+
+```markdown
+## Auth service
+
+[ ] Login page
+```
+
+is displayed in the editor as `## Auth service (1)`, but the file still contains only `## Auth service`.
+
 ## Settings
 
 `mddo.decorationScope` controls how much text is decorated:
@@ -36,6 +61,7 @@ Marker colors are configurable:
 - `mddo.colors.todo` controls `[ ]` markers. Default: `#9ca3af`.
 - `mddo.colors.completed` controls `[+]` markers. Default: `#22c55e`.
 - `mddo.colors.rejected` controls `[-]` markers. Default: `#f97316`.
+- `mddo.headingCounts.enabled` controls virtual open todo counts after headings. Default: `true`.
 
 Example settings:
 
@@ -44,7 +70,8 @@ Example settings:
 	"mddo.decorationScope": "narrow",
 	"mddo.colors.todo": "#9ca3af",
 	"mddo.colors.completed": "#22c55e",
-	"mddo.colors.rejected": "#f97316"
+	"mddo.colors.rejected": "#f97316",
+	"mddo.headingCounts.enabled": true
 }
 ```
 
@@ -95,7 +122,10 @@ When `vsce login` asks for a token, paste your Visual Studio Marketplace persona
 - Renamed the extension to `mddo`.
 - Added `mddo.decorationScope` to switch between marker-only and whole-line decorations.
 - Added `mddo.colors.todo`, `mddo.colors.completed`, and `mddo.colors.rejected` settings.
+- Added `mddo.headingCounts.enabled` for editor-only open todo counts after headings.
 - Added support for Markdown task-list markers like `- [ ]`, `- [+]`, and `- [-]`.
+- Added `Insert/Update Todo Summary` for visible Markdown summary blocks.
+- Todo Summary now refreshes automatically after toggling a todo with `Alt+D`.
 - Normalized todo marker font weight across all statuses.
 - Added an MIT license.
 - Added local VSIX package and install instructions.

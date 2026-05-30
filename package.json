@@ -69,6 +69,11 @@
           "default": "#f97316",
           "format": "color-hex",
           "description": "Color used for [-] rejected markers."
+        },
+        "mddo.headingCounts.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show open todo counts after Markdown headings in the editor without changing the file."
         }
       }
     },
@@ -76,6 +81,10 @@
       {
         "command": "mddo.toggle",
         "title": "Toggle Markdown Todo Status"
+      },
+      {
+        "command": "mddo.updateSummary",
+        "title": "Insert/Update Todo Summary"
       }
     ],
     "keybindings": [
