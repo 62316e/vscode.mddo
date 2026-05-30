@@ -94,7 +94,7 @@ npx @vscode/vsce package
 Install the generated VSIX into your local VS Code profile:
 
 ```bash
-code --install-extension ./mddo-0.0.2.vsix --force
+code --install-extension ./mddo-0.0.3.vsix --force
 ```
 
 Reload VS Code after installing. The extension will be available in other local workspaces that use the same VS Code profile.
@@ -117,15 +117,18 @@ When `vsce login` asks for a token, paste your Visual Studio Marketplace persona
 
 ## Release Notes
 
+### 0.0.3
+
+- Added editor-only open todo counts after Markdown headings.
+- Added `Insert/Update Todo Summary` for visible Markdown summary blocks.
+- Todo Summary now refreshes automatically after toggling a todo with `Alt+D`.
+
 ### 0.0.2
 
 - Renamed the extension to `mddo`.
 - Added `mddo.decorationScope` to switch between marker-only and whole-line decorations.
 - Added `mddo.colors.todo`, `mddo.colors.completed`, and `mddo.colors.rejected` settings.
-- Added `mddo.headingCounts.enabled` for editor-only open todo counts after headings.
 - Added support for Markdown task-list markers like `- [ ]`, `- [+]`, and `- [-]`.
-- Added `Insert/Update Todo Summary` for visible Markdown summary blocks.
-- Todo Summary now refreshes automatically after toggling a todo with `Alt+D`.
 - Normalized todo marker font weight across all statuses.
 - Added an MIT license.
 - Added local VSIX package and install instructions.
